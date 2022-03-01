@@ -1,0 +1,28 @@
+#
+# This systemd unit starts a moodle instance using Podman.
+# Most parts of this file come from podman-generate-systemd.
+#
+[Unit]
+Description=Podman moodle-db server
+
+[Service]
+Environment=PODMAN_SYSTEMD_UNIT=%n
+EnvironmentFile=%S/state/environment
+WorkingDirectory=%S/state
+Restart=always
+ExecStartPre=/bin/rm -f %t/moodle-db.pid %t/moodle-db.ctr-id
+ExecStart=/usr/bin/podman run \
+    --detach \
+    --conmon-pidfile=%t/moodle-db.pid \
+    --cidfile=%t/moodle-db.ctr-id \
+    --cgroups=no-conmon \
+    --replace --name=moodle-db \
+    --publish=127.0.0.1:${TCP_PORT}:3306 \
+    moodle-db
+ExecStop=/usr/bin/podman stop --ignore --cidfile %t/moodle-db.ctr-id -t 10
+ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/moodle-db.ctr-id
+PIDFile=%t/moodle-db.pid
+Type=forking
+
+[Install]
+WantedBy=default.target

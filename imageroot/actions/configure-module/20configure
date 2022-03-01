@@ -20,6 +20,11 @@
 # along with NethServer.  If not, see COPYING.
 #
 
+# Input example:
+#
+#  {"site_name": "mymoodle", "username": "admin", "password": "admin", "email": "admin@test.local"}
+
+
 import json
 import sys
 import agent
@@ -27,6 +32,34 @@ import agent.tasks
 import os
 
 request = json.load(sys.stdin)
+
+# Setup default values
+site_name = request.get("site_name","Moodle")
+username = request.get("username","admin")
+password = request.get("password","admin")
+email = request.get("email", "admin@example.org")
+
+# Talk with agent using file descriptor.
+# Setup configuration from user input.
+agent.set_env("MOODLE_SITE_NAME", site_name)
+agent.set_env("MOODLE_USERNAME", username)
+agent.set_env("MOODLE_PASSWORD", password)
+agent.set_env("MOODLE_EMAIL", email)
+
+agent.set_env("MOODLE_DATABASE_USER", "bn_moodle")
+agent.set_env("MOODLE_DATABASE_PASSWORD", "bitnami")
+agent.set_env("MOODLE_DATABASE_NAME", "bitnami_moodle")
+
+# DB
+
+agent.set_env("ALLOW_EMPTY_PASSWORD", "yes")
+agent.set_env("MARIADB_USER", "bn_moodle")
+agent.set_env("MARIADB_PASSWORD", "bitnami")
+agent.set_env("MARIADB_DATABASE", "bitnami_moodle")
+
+# Make sure everything is saved inside the environment file
+# just before starting systemd unit
+agent.dump_env()
 
 # TODO: do something with the request payload. For example configure a
 # custom route in our web router. Here the path is hardcoded as
