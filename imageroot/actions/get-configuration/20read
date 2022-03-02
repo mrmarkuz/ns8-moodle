@@ -26,4 +26,12 @@ import agent
 
 config = {}
 
+# Read current configuration from Redis
+env = f'module/{os.environ["MODULE_ID"]}/environment'
+rdb = agent.redis_connect()
+config["site_name"] = rdb.hget(env, "MOODLE_SITE_NAME")
+config["username"] = rdb.hget(env, "MOODLE_USERNAME");
+config["password"] = rdb.hget(env, "MOODLE_PASSWORD"); 
+config["email"] = rdb.hget(env, "MOODLE_EMAIL");
+
 json.dump(config, fp=sys.stdout)

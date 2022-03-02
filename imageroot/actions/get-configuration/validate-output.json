@@ -3,6 +3,37 @@
     "title": "Get moodle configuration",
     "$id": "http://nethserver.org/json-schema/task/output/moodle/get-configuration",
     "description": "Get moodle configuration",
-    "examples": [],
-    "type": "object"
+    "examples": [
+      {
+        "site_name": "mymoodle",
+        "username": "admin",
+        "password": "admin",
+        "email": "admin@test.local"
+      }
+    ],
+    "type": "object",
+    "required": [
+      "site_name",
+      "username",
+      "password",
+      "email"
+    ],
+    "properties": {
+      "site_name": {
+        "type": [ "string", "null" ],
+        "description": "Name of the Moodle site"
+      },
+      "username": {
+        "type": [ "string", "null" ],
+        "description": "Administrator user name, usually set to 'admin'"
+      },
+      "password": {
+        "type": [ "string", "null" ],
+        "description": "Default password for administrator user, it can be changed later"
+      },
+      "email": {
+        "description": "The mail address of the administrator user",
+        "format": "idn-email"
+      },
+    }
 }
