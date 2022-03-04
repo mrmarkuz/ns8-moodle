@@ -17,8 +17,8 @@ ExecStart=/usr/bin/podman run \
     --cidfile=%t/moodle-db.ctr-id \
     --cgroups=no-conmon \
     --replace --name=moodle-db \
-    --publish=127.0.0.1:${TCP_PORT}:3306 \
-    moodle-db
+    --volume mariadb_data:/bitnami/mariadb \
+    ${MARIADB_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/moodle-db.ctr-id -t 10
 ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/moodle-db.ctr-id
 PIDFile=%t/moodle-db.pid

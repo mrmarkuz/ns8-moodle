@@ -1,1 +1,27 @@
-[]
+[
+    {
+      "name": {
+        "en": "Change site URL",
+        "it": "Cambia URL wiki"
+      },
+      "description": {
+        "en": "Change the host name associated to the site",
+        "it": "Cambia il nome host associato al site"
+      },
+      "tags": {
+        "en": [
+          "site",
+          "moodle",
+          "host",
+          "url"
+        ],
+        "it": [
+          "site",
+          "moodle",
+          "host",
+          "url"
+        ]
+      },
+      "path": "?page=settings"
+    }
+]

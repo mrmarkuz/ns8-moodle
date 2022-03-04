@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Copyright (C) 2022 Nethesis S.r.l.
+# Copyright (C) 2021 Nethesis S.r.l.
 # http://www.nethesis.it - nethserver@nethesis.it
 #
 # This script is part of NethServer.
@@ -20,22 +20,31 @@
 # along with NethServer.  If not, see COPYING.
 #
 
-import json
+# Configure traefik route for Dokuwiki
+
+import os
 import sys
+import json
 import agent
+import agent.tasks
 
-config = {}
+# Try to parse the stdin as JSON.
+# If parsing fails, output everything to stderr
+data = json.load(sys.stdin)
 
-# Read current configuration from Redis
-env = f'module/{os.environ["MODULE_ID"]}/environment'
-rdb = agent.redis_connect()
-config["site_name"] = rdb.hget(env, "MOODLE_SITE_NAME")
-config["username"] = rdb.hget(env, "MOODLE_USERNAME");
-config["password"] = rdb.hget(env, "MOODLE_PASSWORD"); 
-config["email"] = rdb.hget(env, "MOODLE_EMAIL");
+# Find default traefik instance for current node
+default_traefik_id = agent.resolve_agent_id('traefik@node')
+if default_traefik_id is None:
+    sys.exit(2)
 
-config["host"] =  rdb.hget(env, "TRAEFIK_HOST");
-config["http2https"] =  rdb.hget(env, "TRAEFIK_HTTP2HTTPS") == "True";
-config["lets_encrypt"] =  rdb.hget(env, "TRAEFIK_LETS_ENCRYPT") == "True";
+# Remove traefik route
+response = agent.tasks.run(
+    agent_id=default_traefik_id,
+    action='delete-route',
+    data={
+        'instance': os.environ['MODULE_ID']
+    },
+)
 
-json.dump(config, fp=sys.stdout)
+# Check if traefik configuration has been successfull
+agent.assert_exp(response['exit_code'] == 0)

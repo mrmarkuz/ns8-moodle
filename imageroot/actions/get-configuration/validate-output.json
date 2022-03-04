@@ -8,7 +8,10 @@
         "site_name": "mymoodle",
         "username": "admin",
         "password": "admin",
-        "email": "admin@test.local"
+        "email": "admin@test.local",
+        "host": "moodle.nethserver.org",
+        "http2https": true,
+        "lets_encrypt": true
       }
     ],
     "type": "object",
@@ -16,7 +19,10 @@
       "site_name",
       "username",
       "password",
-      "email"
+      "email",
+      "host",
+      "http2https",
+      "lets_encrypt"
     ],
     "properties": {
       "site_name": {
@@ -35,5 +41,19 @@
         "description": "The mail address of the administrator user",
         "format": "idn-email"
       },
+      "host": {
+        "description": "Host name for the site, like 'moodle.nethserver.org'",
+        "format": "idn-hostname"
+      },
+      "lets_encrypt": {
+        "type": "boolean",
+        "title": "Let's Encrypt certificate",
+        "description": "Request a valid Let's Encrypt certificate."
+      },
+      "http2https": {
+        "type": "boolean",
+        "title": "HTTP to HTTPS redirection",
+        "description": "Redirect all the HTTP requests to HTTPS"
+      }
     }
 }

@@ -1,0 +1,21 @@
+{
+  "name": "Moodle",
+  "description": {
+    "en": "Moodle is an online learning platform"
+  },
+  "categories": [
+    "collaboration"
+  ],
+  "authors": [
+    {
+      "name": "Markus Neuberger",
+      "email": "info@markusneuberger.at"
+    }
+  ],
+  "docs": {
+    "documentation_url": "https://github.com/bitnami/bitnami-docker-moodle",
+    "bug_url": "https://github.com/mrmarkuz/ns8-moodle",
+    "code_url": "https://github.com/mrmarkuz/ns8-moodle"
+  },
+  "source": "ghcr.io/mrmarkuz/moodle"
+}
