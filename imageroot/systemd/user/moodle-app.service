@@ -21,8 +21,9 @@ ExecStartPre=-runagent discover-smarthost
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/moodle-app.pid \
     --cidfile %t/moodle-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/moodle.pod-id --replace -d --name  moodle-app \
-    --volume moodle_data:/bitnami/moodle \
-    --volume moodledata_data:/bitnami/moodledate \
+    --volume moodle-app:/bitnami/moodle \
+    --volume moodle-data:/bitnami/moodledata \
+    --env ALLOW_EMPTY_PASSWORD=yes \
     --env MOODLE_DATABASE_USER=moodle \
     --env MOODLE_DATABASE_PASSWORD=moodle \
     --env MOODLE_DATABASE_NAME=moodle \
