@@ -27,7 +27,6 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/moodle-app.pid \
     --env MOODLE_DATABASE_USER=moodle \
     --env MOODLE_DATABASE_PASSWORD=moodle \
     --env MOODLE_DATABASE_NAME=moodle \
-    --env MOODLE_DATABASE_HOST=mariadb-app \
     --env MOODLE_HOST=moodle.mrmarkuz.com \
     --env MOODLE_REVERSEPROXY=true \
     --env MOODLE_SSLPROXY=true \

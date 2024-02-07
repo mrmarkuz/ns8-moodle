@@ -20,11 +20,10 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/mariadb-app.pid \
     --pod-id-file %t/moodle.pod-id --replace -d --name mariadb-app \
     --env-file=%S/state/environment \
     --volume mariadb-data:/bitnami/mariadb \
-    --env MARIADB_ROOT_PASSWORD=Nethesis,1234 \
+    --env ALLOW_EMPTY_PASSWORD=yes \
     --env MARIADB_DATABASE=moodle \
     --env MARIADB_USER=moodle \
     --env MARIADB_PASSWORD=moodle \
-    --env MARIADB_AUTO_UPGRADE=1 \
     ${MARIADB_IMAGE} \
     --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 ExecStartPost=/usr/bin/podman exec  mariadb-app /bin/bash -c 'printf "[client] \npassword=Nethesis,1234" > /root/.my.cnf'
