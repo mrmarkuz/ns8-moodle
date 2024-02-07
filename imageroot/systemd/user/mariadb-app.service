@@ -19,7 +19,7 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/mariadb-app.pid \
     --cidfile %t/mariadb-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/moodle.pod-id --replace -d --name mariadb-app \
     --env-file=%S/state/environment \
-    --volume mysql-data:/var/lib/mysql/:Z \
+    --volume mariadb-data:/bitnami/mariadb \
     --env MARIADB_ROOT_PASSWORD=Nethesis,1234 \
     --env MARIADB_DATABASE=moodle \
     --env MARIADB_USER=moodle \
