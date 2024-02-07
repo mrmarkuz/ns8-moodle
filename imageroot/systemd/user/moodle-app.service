@@ -26,10 +26,7 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/moodle-app.pid \
     --env ALLOW_EMPTY_PASSWORD=yes \
     --env MOODLE_DATABASE_USER=moodle \
     --env MOODLE_DATABASE_PASSWORD=moodle \
-    --env MOODLE_DATABASE_NAME=moodle \
-    --env MOODLE_HOST=moodle.mrmarkuz.com \
-    --env MOODLE_REVERSEPROXY=true \
-    --env MOODLE_SSLPROXY=true \
+    --env MOODLE_DATABASE_NAME=moodle \    
     ${MOODLE_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/moodle-app.ctr-id -t 10
 ExecReload=/usr/bin/podman kill -s HUP moodle-app
