@@ -6,7 +6,7 @@
 [Unit]
 Description=Podman  moodle-app.service
 BindsTo=moodle.service
-After=moodle.service mariadb-app.service
+After=moodle.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n

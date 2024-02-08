@@ -10,8 +10,8 @@
 
 [Unit]
 Description=Podman moodle.service
-Requires=mariadb-app.service moodle-app.service
-Before=mariadb-app.service moodle-app.service
+Requires=moodle-app.service
+Before=moodle-app.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
