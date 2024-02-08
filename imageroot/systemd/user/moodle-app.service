@@ -21,7 +21,7 @@ ExecStartPre=-runagent discover-smarthost
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/moodle-app.pid \
     --cidfile %t/moodle-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/moodle.pod-id --replace -d --name  moodle-app \
-     ${MOODLE-PHP-APACHE_IMAGE}
+     ${MOODLE_PHP_APACHE_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/moodle-app.ctr-id -t 10
 ExecReload=/usr/bin/podman kill -s HUP moodle-app
 SyslogIdentifier=%u

@@ -21,7 +21,7 @@ ExecStartPre=-runagent discover-smarthost
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/moodle-db-mssql-app.pid \
     --cidfile %t/moodle-db-mssql-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/moodle.pod-id --replace -d --name  moodle-db-mssql-app \
-     ${MOODLE-DB-MSSQL_IMAGE}
+     ${MOODLE_DB_MSSQL_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/moodle-db-mssql-app.ctr-id -t 10
 ExecReload=/usr/bin/podman kill -s HUP moodle-db-mssql-app
 SyslogIdentifier=%u
