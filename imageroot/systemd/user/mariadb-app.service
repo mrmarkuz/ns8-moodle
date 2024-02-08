@@ -24,8 +24,8 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/mariadb-app.pid \
     --env MARIADB_USER=moodle \
     --env MARIADB_PASSWORD=moodle \
     --volume mariadb_data:/bitnami/mariadb \
-    ${MARIADB_IMAGE} \
-    --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ${MARIADB_IMAGE}
+# --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 # ExecStartPost=/usr/bin/podman exec  mariadb-app /bin/bash -c 'printf "[client] \npassword=Nethesis,1234" > /root/.my.cnf'
 # ExecStartPost=/usr/bin/podman exec mariadb-app /bin/bash -c "while ! mysqladmin ping -h localhost -P 3306 -u root; do sleep 1; done"
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/mariadb-app.ctr-id -t 10
