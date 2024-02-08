@@ -10,8 +10,8 @@
 
 [Unit]
 Description=Podman moodle.service
-Requires=moodle-app.service
-Before=moodle-app.service
+Requires=moodle-app.service moodle-db-mssql-app.service
+Before=moodle-app.service moodle-db-mssql-app.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n

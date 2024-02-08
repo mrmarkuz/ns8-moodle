@@ -6,7 +6,7 @@
 [Unit]
 Description=Podman  moodle-app.service
 BindsTo=moodle.service
-After=moodle.service
+After=moodle.service moodle-db-mssql-app.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
@@ -21,7 +21,7 @@ ExecStartPre=-runagent discover-smarthost
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/moodle-app.pid \
     --cidfile %t/moodle-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/moodle.pod-id --replace -d --name  moodle-app \
-     ${MOODLEAPP_IMAGE}
+     ${MOODLE-PHP-APACHE_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/moodle-app.ctr-id -t 10
 ExecReload=/usr/bin/podman kill -s HUP moodle-app
 SyslogIdentifier=%u
