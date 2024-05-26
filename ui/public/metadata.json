@@ -1,19 +1,19 @@
 {
   "name": "moodle",
   "description": {
-    "en": "My moodle module"
+    "en": "Online learning platform"
   },
-  "categories": [],
+  "categories": ["collaboration"],
   "authors": [
     {
-      "name": "Name Surname",
-      "email": "author@yourmail.org"
+      "name": "Markus Neuberger",
+      "email": "dev@markusneuberger.at"
     }
   ],
   "docs": {
-    "documentation_url": "https://docs.moodle.com/",
-    "bug_url": "https://github.com/NethServer/dev",
-    "code_url": "https://github.com/author/ns8-moodle"
+    "documentation_url": "https://docs.moodle.org/",
+    "bug_url": "https://community.nethserver.org",
+    "code_url": "https://github.com/mrmarkuz/ns8-moodle"
   },
-  "source": "ghcr.io/nethserver/moodle"
+  "source": "ghcr.io/mrmarkuz/moodle"
 }
