@@ -18,4 +18,5 @@ podman exec moodle-mariadb mysqldump \
         --ignore-table=mysql.event \
         --single-transaction \
         --quick \
+        --user root \
         --add-drop-table  > moodle.sql
