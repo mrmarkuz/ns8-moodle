@@ -16,7 +16,6 @@ cat - >initdb.d/zz_moodle_restore.sh <<'EOS'
 # Print additional information:
 mariadb --version
 # The script is sourced, override entrypoint args and exit:
-set -- true
 exit 0
 EOS
 
