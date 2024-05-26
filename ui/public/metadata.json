@@ -1,5 +1,5 @@
 {
-  "name": "moodle",
+  "name": "Moodle",
   "description": {
     "en": "Online learning platform"
   },
@@ -11,7 +11,7 @@
     }
   ],
   "docs": {
-    "documentation_url": "https://docs.moodle.org/",
+    "documentation_url": "https://docs.moodle.org",
     "bug_url": "https://community.nethserver.org",
     "code_url": "https://github.com/mrmarkuz/ns8-moodle"
   },
