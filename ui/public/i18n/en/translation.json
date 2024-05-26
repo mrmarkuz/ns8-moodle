@@ -19,7 +19,7 @@
     "no_services": "No services",
     "no_images": "No images",
     "no_volumes": "No volumes",
-    "moodle_webapp": "Moodle webapp",
+    "moodle_webapp": "Moodle",
     "not_configured": "Not configured",
     "open_webapp": "Open Moodle",
     "configure": "Configure"
@@ -28,7 +28,7 @@
     "title": "Settings",
     "configure_instance": "Configure {instance}",
     "save": "Save",
-    "moodle_fqdn": "moodle hostname (FQDN)",
+    "moodle_fqdn": "Moodle hostname (FQDN)",
     "lets_encrypt": "Request LE Certificate",
     "http_to_https": "Force HTTPS",
     "enabled": "Enabled",
@@ -36,7 +36,10 @@
     "advanced": "Advanced",
     "configuring": "Configuring",
     "instance_configuration": "Configure moodle",
-    "domain_already_used_in_traefik": "Domain already used in traefik"
+    "domain_already_used_in_traefik": "Domain already used in traefik",
+    "admin_username": "Admin username",
+    "admin_password": "Admin password",
+    "sitename": "Moodle site name"
   },
   "about": {
     "title": "About"

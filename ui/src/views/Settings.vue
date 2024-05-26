@@ -70,7 +70,8 @@
               :invalid-message="$t(error.username)"
               :disabled="
                 loading.getConfiguration ||
-                loading.configureModule
+                loading.configureModule ||
+                already_set
               "
               ref="username"
             >
@@ -85,14 +86,15 @@
               :invalid-message="$t(error.password)"
               :disabled="
                 loading.getConfiguration ||
-                loading.configureModule
+                loading.configureModule ||
+                already_set
               "
               ref="password"
               >
             </cv-text-input>
             <cv-text-input
               :label="$t('settings.sitename')"
-              placeholder="moodle.example.org"
+              placeholder="My Moodle site"
               v-model.trim="sitename"
               class="mg-bottom"
               :invalid-message="$t(error.sitename)"
@@ -101,13 +103,14 @@
             ></cv-text-input>
 
               <!-- advanced options -->
-            <cv-accordion ref="accordion" class="maxwidth mg-bottom">
+            <!-- <cv-accordion ref="accordion" class="maxwidth mg-bottom">
               <cv-accordion-item :open="toggleAccordion[0]">
                 <template slot="title">{{ $t("settings.advanced") }}</template>
                 <template slot="content">
                 </template>
               </cv-accordion-item>
             </cv-accordion>
+            -->
             <cv-row v-if="error.configureModule">
               <cv-column>
                 <NsInlineNotification
