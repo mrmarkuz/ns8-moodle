@@ -61,6 +61,45 @@
                 $t("settings.enabled")
               }}</template>
             </cv-toggle>
+
+            <cv-text-input
+              :label="$t('settings.admin_username')"
+              placeholder="admin"
+              v-model.trim="username"
+              class="mg-bottom"
+              :invalid-message="$t(error.username)"
+              :disabled="
+                loading.getConfiguration ||
+                loading.configureModule
+              "
+              ref="username"
+            >
+            </cv-text-input>
+            <cv-text-input
+              :label="$t('settings.admin_password')"
+              v-model.trim="password"
+              type="password"
+              :password-show-label="$t('settings.show_password')"
+              :password-hide-label="$t('settings.hide_password')"
+              class="mg-bottom"
+              :invalid-message="$t(error.password)"
+              :disabled="
+                loading.getConfiguration ||
+                loading.configureModule
+              "
+              ref="password"
+              >
+            </cv-text-input>
+            <cv-text-input
+              :label="$t('settings.sitename')"
+              placeholder="moodle.example.org"
+              v-model.trim="sitename"
+              class="mg-bottom"
+              :invalid-message="$t(error.sitename)"
+              :disabled="loading.getConfiguration || loading.configureModule"
+              ref="sitename"
+            ></cv-text-input>
+
               <!-- advanced options -->
             <cv-accordion ref="accordion" class="maxwidth mg-bottom">
               <cv-accordion-item :open="toggleAccordion[0]">
@@ -125,6 +164,9 @@ export default {
       host: "",
       isLetsEncryptEnabled: false,
       isHttpToHttpsEnabled: true,
+      username: "",
+      password: "",
+      sitename: "",
       loading: {
         getConfiguration: false,
         configureModule: false,
@@ -135,6 +177,9 @@ export default {
         host: "",
         lets_encrypt: "",
         http2https: "",
+        username: "",
+        password: "",
+        sitename: "",
       },
     };
   },
@@ -202,6 +247,9 @@ export default {
       this.host = config.host;
       this.isLetsEncryptEnabled = config.lets_encrypt;
       this.isHttpToHttpsEnabled = config.http2https;
+      this.username = config.username;
+      this.password = config.password;
+      this.sitename = config.sitename;
 
       this.loading.getConfiguration = false;
       this.focusElement("host");
@@ -215,6 +263,22 @@ export default {
 
         if (isValidationOk) {
           this.focusElement("host");
+        }
+        isValidationOk = false;
+      }
+      if (!this.username) {
+        this.error.username = "common.required";
+
+        if (isValidationOk) {
+          this.focusElement("username");
+        }
+        isValidationOk = false;
+      }
+      if (!this.password) {
+        this.error.password = "common.required";
+
+        if (isValidationOk) {
+          this.focusElement("password");
         }
         isValidationOk = false;
       }
@@ -271,6 +335,9 @@ export default {
             host: this.host,
             lets_encrypt: this.isLetsEncryptEnabled,
             http2https: this.isHttpToHttpsEnabled,
+            username: this.username,
+            password: this.password,
+            sitename: this.sitename,
           },
           extra: {
             title: this.$t("settings.instance_configuration", {

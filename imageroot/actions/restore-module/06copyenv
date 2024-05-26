@@ -17,6 +17,9 @@ for evar in [
         "TRAEFIK_HOST",
         "TRAEFIK_HTTP2HTTPS",
         "TRAEFIK_LETS_ENCRYPT",
+        "MOODLE_USERNAME",
+        "MOODLE_PASSWORD",
+        "MOODLE_SITE_NAME",
     ]:
     agent.set_env(evar, original_environment[evar])
 
