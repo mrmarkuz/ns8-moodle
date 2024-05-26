@@ -12,7 +12,7 @@ if ! systemctl --user -q is-active moodle.service; then
 fi
 
 podman exec mariadb-app mysqldump \
-        --databases moodle \
+        --databases bitnami_moodle \
         --default-character-set=utf8mb4 \
         --skip-dump-date \
         --ignore-table=mysql.event \

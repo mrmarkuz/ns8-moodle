@@ -27,8 +27,8 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/moodle-app.pid \
     --env MOODLE_DATABASE_USER=bn_moodle \
     --env MOODLE_DATABASE_PASSWORD=bitnami \
     --env MOODLE_DATABASE_NAME=bitnami_moodle \
-    --volume moodle-data:/bitnami/moodle \
-    --volume moodledata-data:/bitnami/moodledata \
+    --volume moodle-data:/bitnami/moodle:Z \
+    --volume moodledata-data:/bitnami/moodledata:Z \
     ${MOODLE_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/moodle-app.ctr-id -t 10
 ExecReload=/usr/bin/podman kill -s HUP moodle-app

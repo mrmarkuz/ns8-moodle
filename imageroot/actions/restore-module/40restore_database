@@ -32,10 +32,12 @@ podman run \
   --interactive \
   --network=none \
   --volume=./initdb.d:/docker-entrypoint-initdb.d:z \
-  --volume mysql-data:/var/lib/mysql/:Z \
-  --env MARIADB_ROOT_PASSWORD=Nethesis,1234 \
-  --env MARIADB_DATABASE=moodle \
-  --env MARIADB_USER=moodle \
-  --env MARIADB_PASSWORD=moodle \
+  --env ALLOW_EMPTY_PASSWORD=yes \
+  --env MARIADB_USER=bn_moodle \
+  --env MARIADB_PASSWORD=bitnami \
+  --env MARIADB_DATABASE=bitnami_moodle \
+  --env MARIADB_CHARACTER_SET=utf8mb4 \
+  --env MARIADB_COLLATE=utf8mb4_unicode_ci \
+  --volume mariadb-data:/bitnami/mariadb:z \
   --replace --name=restore_db \
   ${MARIADB_IMAGE}
