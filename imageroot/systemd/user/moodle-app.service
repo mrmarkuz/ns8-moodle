@@ -20,8 +20,7 @@ ExecStartPre=/bin/rm -f %t/moodle-app.pid %t/moodle-app.ctr-id
 ExecStartPre=-runagent discover-smarthost
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/moodle-app.pid \
     --cidfile %t/moodle-app.ctr-id --cgroups=no-conmon \
-    --pod-id-file %t/moodle.pod-id --replace -d --name  moodle-app \
-    --env ALLOW_EMPTY_PASSWORD=yes \
+    --pod-id-file %t/moodle.pod-id --replace -d --name  moodle-app \    
     --env MOODLE_DATABASE_HOST=moodle-mariadb \
     --env MOODLE_DATABASE_PORT_NUMBER=3306 \
     --env MOODLE_DATABASE_USER=bn_moodle \

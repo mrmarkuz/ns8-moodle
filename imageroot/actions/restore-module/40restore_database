@@ -30,7 +30,7 @@ podman run \
   --interactive \
   --network=none \
   --volume=./initdb.d:/docker-entrypoint-initdb.d:z \
-  --env ALLOW_EMPTY_PASSWORD=yes \
+  --env MARIADB_ROOT_PASSWORD=Nethesis,1234 \
   --env MARIADB_USER=bn_moodle \
   --env MARIADB_PASSWORD=bitnami \
   --env MARIADB_DATABASE=bitnami_moodle \
