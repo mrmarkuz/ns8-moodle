@@ -298,6 +298,14 @@ export default {
         }
         isValidationOk = false;
       }
+      if (!this.sitename) {
+        this.error.sitename = "common.required";
+
+        if (isValidationOk) {
+          this.focusElement("sitename");
+        }
+        isValidationOk = false;
+      }
       return isValidationOk;
     },
     configureModuleValidationFailed(validationErrors) {
