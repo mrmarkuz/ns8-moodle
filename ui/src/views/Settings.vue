@@ -98,7 +98,11 @@
               v-model.trim="sitename"
               class="mg-bottom"
               :invalid-message="$t(error.sitename)"
-              :disabled="loading.getConfiguration || loading.configureModule"
+              :disabled="
+                loading.getConfiguration ||
+                loading.configureModule ||
+                already_set
+              "
               ref="sitename"
             ></cv-text-input>
 
@@ -164,6 +168,7 @@ export default {
         page: "settings",
       },
       urlCheckInterval: null,
+      already_set: false,
       host: "",
       isLetsEncryptEnabled: false,
       isHttpToHttpsEnabled: true,
@@ -253,6 +258,14 @@ export default {
       this.username = config.username;
       this.password = config.password;
       this.sitename = config.sitename;
+      // set already_set to true if the configuration is not empty
+      if (
+        this.username &&
+        this.password &&
+        this.sitename        
+      ) {
+        this.already_set = true;
+      }
 
       this.loading.getConfiguration = false;
       this.focusElement("host");
