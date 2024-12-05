@@ -11,20 +11,12 @@ if ! systemctl --user -q is-active moodle.service; then
     exit 0
 fi
 
-# Create mariadb config file for password
-podman exec moodle-mariadb /bin/bash -c 'printf "[mariadb-dump]\nuser=bn_moodle\npassword=bitnami\n" > /opt/bitnami/mariadb-dump.cnf'
-
-# dump db
 podman exec moodle-mariadb mariadb-dump \
-        --defaults-file=/opt/bitnami/mariadb-dump.cnf \
         --databases bitnami_moodle \
         --default-character-set=utf8mb4 \
         --skip-dump-date \
         --ignore-table=mysql.event \
         --single-transaction \
         --quick \
-        --user bn_moodle \
+        --user root \
         --add-drop-table  > moodle.sql
-
-# remove mariadb config file
-podman exec moodle-mariadb rm /opt/bitnami/mariadb-dump.cnf
