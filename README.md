@@ -13,7 +13,7 @@ Output example:
 
     {"module_id": "moodle1", "image_name": "moodle", "image_url": "ghcr.io/nethserver/moodle:latest"}
 
-## Configure
+## Configuration
 
 Let's assume that the mattermost instance is named `moodle1`.
 
