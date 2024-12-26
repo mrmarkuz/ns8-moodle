@@ -1,8 +1,5 @@
 {
   "dependencies": {
     "@nethserver/ns8-ui-lib": "^1.2.1"
-  },
-  "devDependencies": {
-    "mark.js": "^8.11.1"
   }
 }
