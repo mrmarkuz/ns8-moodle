@@ -8,6 +8,8 @@ Install via Software center:
 
   - Add a Software repository pointing to `https://repo.mrmarkuz.com/ns8/updates/`, check out the [repo webpage](https://repo.mrmarkuz.com) how to do it.
 
+The first startup takes about 4 minutes as Moodle gets freshly installed by an install script. You can follow the process on the logs page.
+
 ## Configuration
 
 Set the FQDN and the admin name and password in the app settings.
